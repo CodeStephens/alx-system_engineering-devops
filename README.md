@@ -1,1 +1,1 @@
-This is a repository on bash scripting
+This is bash scripting repository
