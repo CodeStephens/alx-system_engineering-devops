@@ -1,2 +1,3 @@
-ln -s /bin/ls _ls_
-readlink -l  _ls_
+#!/bin/bash
+ln -s /bin/ls readlink _ls_
+
