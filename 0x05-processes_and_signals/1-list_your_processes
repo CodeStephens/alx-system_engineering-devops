@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 # script lists the processes in the shell 
 
-ps -aux -f
-
+ps -aux --format
