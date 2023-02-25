@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# script terminates a process using "kill" command
+
+kill "S(ps - | pgrep -f beyond)"
