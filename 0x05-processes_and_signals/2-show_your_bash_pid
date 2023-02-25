@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# script displays only processes associated with bash 
+
+ps -aux --forest | grep bash
