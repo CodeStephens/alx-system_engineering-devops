@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script attempts to use ssh to connect to a remote server using a private
+# key stored in '~/.ssh/school
+
+ssh -i ~/.ssh/school ubuntu@174890-web-01
