@@ -7,7 +7,7 @@ IdentityFile ~/.ssh/school
 PasswordAuthentication no
 END
 
-file {'2-ssh_config':
+file {'/etc/ssh/ssh_config':
 ensure  => present,
 content => $file_content,
 }
