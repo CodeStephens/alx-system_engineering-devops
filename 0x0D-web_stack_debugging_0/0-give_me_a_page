@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# codes the enable the holberton docker to run a webpage
+
+sudo apt install apache2
+
