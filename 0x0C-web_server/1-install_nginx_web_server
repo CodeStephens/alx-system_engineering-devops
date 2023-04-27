@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# This bash script installs and configures nginx
+
+apt-get update
+apt-get install nginx -y
+
+# Configure nginx to listen on port 80
+sed -i 's/listen\s*80;/listen 80 default_server;/g' /etc/nginx/sites-available/default
+
+# Reload nginx configuration
+nginx -s reload
+
+# Create a test index.html file
+echo "<html><body><h1>Hello World!</h1></body></html>" > /var/www/html/index.html
+
+# Check if nginx is running and listening on port 80
+nginx_pid=$(ps aux | grep '[n]ginx' | awk '{print $2}')
+nginx_port=$(netstat -lnp | grep $nginx_pid | grep -oP '(?<=:)\d+')
+if [ "$nginx_port" != "80" ]; then
+    echo "Nginx is not listening on port 80"
+    exit 1
+fi
+
+# Check if nginx returns "Hello World!" message
+curl_output=$(curl -s http://localhost)
+if ! echo "$curl_output" | grep -q "Hello World!"; then
+    echo "Nginx is not returning the expected message"
+    exit 1
+fi
+
+echo "Nginx is installed and configured correctly"
+
