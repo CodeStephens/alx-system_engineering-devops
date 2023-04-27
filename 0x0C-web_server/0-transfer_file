@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 # transfer of file between host and client using scp
 
 if [ $# -lt 4 ]; then
