@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# This bash script installs and configures nginx
+
+# Update the package index and install nginx
+sudo apt-get update
+sudo apt-get install nginx -y
+
+# content of the html webpage
+echo '<html><body><p>Hello World!</p></body></html>' > /var/www/html/index.html
+
+# redirecting from a url page to another
+sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent;/" /etc/nginx/sites-available/default
+
+# start nginx
+sudo service nginx start
