@@ -9,4 +9,4 @@ sudo apt-get install nginx -y
 echo 'Hello World!' > /var/www/index.html
 
 # start nginx
-sudo /etc/init.d/nginx start
+sudo service nginx start
