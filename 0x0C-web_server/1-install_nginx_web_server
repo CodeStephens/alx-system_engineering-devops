@@ -9,7 +9,7 @@ sudo apt-get install nginx -y
 sudo echo "server {
     listen 80;
     location / {
-        echo 'Hello World!';
+        echo '<html><body>Hello World!</body></html>';
     }
 }" > /etc/nginx/sites-available/default
 
