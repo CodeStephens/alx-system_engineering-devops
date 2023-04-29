@@ -29,6 +29,23 @@ file { '/etc/nginx/sites-available/default':
   notify => Service['nginx'],
 }
 
+# Create the default html page
+file { '/var/www/html/default':
+  ensure  => file,
+  owner   => 'www-data',
+  group   => 'www-data',
+  mode    => '0644',
+  content => "<!DOCTYPE html>
+<html>
+    <head>
+        <title>Welcome</title>
+    </head>
+    <body>
+         <p>Hello World!</p>
+    </body>
+</html>",
+}
+
 # Create the custom 404 error page
 file { '/var/www/html/404.html':
   ensure  => file,
