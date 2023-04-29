@@ -9,11 +9,13 @@ file { '/etc/nginx/sites-available/default':
   content => "server {
     listen 80 default_server;
     listen [::]:80 default_server;
-    server_name _;
+    server_name 52.87.219.225;
 
     location /redirect_me {
         return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
     }
+
+    error 404 /404.html
 
     location / {
         try_files \$uri \$uri/ =404;
