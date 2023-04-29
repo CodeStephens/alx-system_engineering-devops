@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# This bash script installs and configures nginx
+
+# Update the package index and install nginx
+sudo apt-get update
+sudo apt-get install nginx -y
+
+# Configuring the redirect_me redirection using return
+sudo tee /etc/nginx/sites-available/default > /dev/null <<EOF
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    server_name _;
+
+    location /redirect_me {
+        return 301 hhttps://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+
+    location = /404.html {
+	internal;
+	root /var/www/html;
+	echo "Ceci n'est pas une page";
+}
+EOF
+
+# start nginx
+sudo service nginx start
