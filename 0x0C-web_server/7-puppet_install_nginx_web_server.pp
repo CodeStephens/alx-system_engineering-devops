@@ -15,7 +15,7 @@ file { '/etc/nginx/sites-available/default':
         return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
     }
 
-    error 404 /404.html
+    error_page 404 /404.html
 
     location / {
         try_files \$uri \$uri/ =404;
