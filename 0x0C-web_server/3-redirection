@@ -6,14 +6,29 @@ sudo apt-get update
 sudo apt-get install nginx -y
 
 # content of the html webpage
-echo '<html><body><p>Hello World!</p></body></html>' > /var/www/html/index.html
+#echo '<html><body><p>Hello World!</p></body></html>' > /var/www/html/index.html
 
-echo 'server_name 52.87.219.225;'
+#echo 'server_name 52.87.219.225;'
 
 # redirecting from a url page to another
-sed -i "s|location / {try_files \$uri \$uri/ =404;}|location /redirect_me {\n\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;}|" /etc/nginx/sites-available/default
+#sed -i "s|location / {try_files \$uri \$uri/ =404;}|location /redirect_me {\n\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;}|" /etc/nginx/sites-available/default
 
 #sed -i "s|location \/ {try_files $uri $uri\/ =404;}|location \/redirect_me {rewrite ^\/redirect_me https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent;}|" /etc/nginx/sites-available/default
+sudo tee /etc/nginx/sites-available/default > /dev/null <<EOF
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    server_name _;
+
+    location /redirect_me {
+        return 301 https://www.google.com;
+    }
+
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+}
+EOF
 
 # start nginx
 sudo service nginx start
