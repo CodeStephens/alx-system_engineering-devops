@@ -23,8 +23,20 @@ server {
     location = /404.html {
 	internal;
 	root /var/www/html;
-	echo "Ceci n'est pas une page";
 }
+EOF
+
+sudo tee /var/www/html/404.html > dev/null <<EOF
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>404 Not Found</title>
+    </head>
+    <body>
+        <h1>404 Not Found</h1>
+        <p>Ceci n'est pas une page</p>
+    </body>
+</html>
 EOF
 
 # start nginx
