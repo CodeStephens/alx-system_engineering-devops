@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Configure Nginx to add a custom HTTP response header
 # The header name is X-Served-By and the value is the hostname of the server
 
