@@ -11,9 +11,12 @@ service { 'nginx':
 
 # Configure Nginx
 file {'/etc/nginx/sites-available/default':
-    server_name _;
-    root /var/www/html;
-    index index.html;
+    content => "
+    server {
+	listen 80;
+	server_name _;
+    	root /var/www/html;
+   	index index.html;
 
     location /redirect_me {
         return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
@@ -22,6 +25,7 @@ file {'/etc/nginx/sites-available/default':
     location / {
    	try_files $uri $uri/ =404;
     }
+ }",
 }
 
 # Create the default html page
