@@ -1,13 +1,16 @@
 # Install Nginx
-class { 'nginx': }
+class nginx {
+  package { 'nginx':
+    ensure => installed,
+  }
+
+service { 'nginx':
+  ensure => running,
+  enable => true,
+}
 
 # Configure Nginx
 file {'/etc/nginx/sites-available/default':
-  ensure  => file,
-  owner   => 'root',
-  group   => 'root',
-  content => "server {
-    listen 80;
     server_name _;
     root /var/www/html;
     index index.html;
@@ -15,7 +18,11 @@ file {'/etc/nginx/sites-available/default':
     location /redirect_me {
         return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
     }
-  }
+
+    location / {
+   	try_files $uri $uri/ =404;
+    }
+}
 
 # Create the default html page
 file { '/var/www/html/index.html':
