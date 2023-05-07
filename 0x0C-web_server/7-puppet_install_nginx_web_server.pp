@@ -1,3 +1,4 @@
+# Puppet manifest that installs and configures nginx
 class nginx {
   package { 'nginx':
     ensure => installed,
