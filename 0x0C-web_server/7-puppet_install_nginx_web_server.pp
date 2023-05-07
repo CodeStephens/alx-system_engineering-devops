@@ -17,7 +17,7 @@ class nginx {
     content => "
 server {
   listen 80;
-  server_name _;
+  server_name 52.87.219.225;
   root /var/www/html;
   index index.html;
 
