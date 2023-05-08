@@ -12,7 +12,7 @@ sudo apt install -y nginx
 CONFIG="server {
         listen 80 default_server;
         listen [::]:80 default_server;
-	add_header X-Served-By $hostname;
+	add_header X-Served-By '$hostname';
         # SSL configuration
         #
         # listen 443 ssl default_server;
@@ -44,7 +44,7 @@ CONFIG="server {
 
 	error_page 404 /404.html;
 	location = /404.html{
-		root /var/www/html/404.html;
+		root /var/www/html;
 		internal;
 	}
 }"
