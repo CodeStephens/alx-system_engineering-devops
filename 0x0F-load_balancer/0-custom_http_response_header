@@ -52,6 +52,8 @@ CONFIG="server {
 sudo sh -c "echo '$CONFIG' > /etc/nginx/sites-enabled/default"
 
 
+sudo touch /var/www/html/index.html
+
 sudo sh -c "echo 'Hello World!' > /var/www/html/index.html"
 
 sudo touch /var/www/html/404.html
