@@ -49,8 +49,7 @@ CONFIG="server {
 	}
 }"
 
-sudo sh -c "echo '$CONFIG' > /etc/nginx/sites-available/default"
-
+sudo sh -c "echo '$CONFIG' > /etc/nginx/sites-enabled/default"
 
 sudo touch /var/www/html/index.html
 
