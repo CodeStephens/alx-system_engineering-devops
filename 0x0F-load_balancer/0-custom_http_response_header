@@ -58,7 +58,7 @@ sudo sh -c "echo 'Hello World!' > /var/www/html/index.html"
 
 sudo touch /var/www/html/404.html
 
-sudo sh -c "echo 'Ceci n\'est pas une page' > /var/www/html/404.html"
+sudo sh -c "echo \"Ceci n'est pas une page\" > /var/www/html/404.html"
 
 
 # Restart Nginx
