@@ -9,7 +9,7 @@ sudo apt update
 sudo apt install -y nginx
 
 # Edit the Nginx configuration file
-sudo sed -i '/http {/a \        add_header X-Served-By $hostname;' /etc/nginx/nginx.conf
+sudo sed -i '/server {/a \        add_header X-Served-By $hostname;' /etc/nginx/sites-enabled/default
 
 echo "Hello World!" > /var/www/html/index.html
 
