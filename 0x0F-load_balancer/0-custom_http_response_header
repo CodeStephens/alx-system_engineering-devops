@@ -3,7 +3,7 @@
 # The header name is X-Served-By and the value is the hostname of the server
 
 # Update the package list
-sudo apt update
+sudo apt update -y
 
 # Install Nginx if it's not already installed
 sudo apt install -y nginx
@@ -62,4 +62,4 @@ sudo sh -c "echo 'Ceci n\'est pas une page' > /var/www/html/404.html"
 
 
 # Restart Nginx
-sudo systemctl restart nginx
+sudo service nginx restart
