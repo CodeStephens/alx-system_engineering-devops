@@ -12,7 +12,7 @@ sudo apt install -y nginx
 CONFIG="server {
         listen 80 default_server;
         listen [::]:80 default_server;
-	add_header X-Served-By '$hostname';
+	add_header X-Served-By \$HOSTNAME;
         # SSL configuration
         #
         # listen 443 ssl default_server;
@@ -53,7 +53,7 @@ CONFIG="server {
 	}
 }"
 
-sudo sh -c "echo '$CONFIG' > /etc/nginx/sites-enabled/default"
+sudo sh -c "echo \$CONFIG > /etc/nginx/sites-available/default"
 
 sudo touch /var/www/html/index.html
 
