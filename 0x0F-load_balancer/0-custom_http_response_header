@@ -1,14 +1,8 @@
 #!/usr/bin/env bash
 # Configure Nginx to add a custom HTTP response header
-# The header name is X-Served-By and the value is the hostname of the server
 
-# Update the package list
 sudo apt update -y
-
-# Install Nginx if it's not already installed
 sudo apt install -y nginx
-
-# Edit the Nginx configuration file
 CONFIG="server {
         listen 80 default_server;
         listen [::]:80 default_server;
@@ -63,6 +57,4 @@ sudo touch /var/www/html/404.html
 
 sudo sh -c "echo \"Ceci n'est pas une page\" > /var/www/html/404.html"
 
-
-# Restart Nginx
 sudo service nginx restart
