@@ -4,7 +4,7 @@
 # installing dependencies and packages
 sudo apt-get -y install --no-install-recommends software-properties-common
 sudo add-apt-repository -y ppa:vbernat/haproxy-2.6
-sudo apt-get -y install haproxy=2.6.\*
+sudo apt-get -y install haproxy
 
 # configuring the Haproxy configuration file
 CONFIG="global
