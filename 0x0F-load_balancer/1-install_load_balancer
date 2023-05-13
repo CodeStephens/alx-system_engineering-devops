@@ -22,4 +22,4 @@ sudo sh -c "echo \$CONFIG >> /etc/haproxy/haproxy.cfg"
 sudo sh -c "echo 'ENABLED=1' >> /etc/default/haproxy"
 
 # restart haproxy server
-sudo service haproxy restart
+sudo service haproxy reload
