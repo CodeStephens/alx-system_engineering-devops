@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Debugging web server to listen on port 80
+
+cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
+
+# Replace the port in the configuration file
+sed -i 's/listen 8080 default_server;/listen 80 default_server;/' /etc/nginx/sites-enabled/default
+sed -i 's/listen \[::\]:8080 default_server ipv6only=on;/listen \[::\]:80 default_server;/' /etc/nginx/sites-enabled/default
+sed -i 's/ ipv6only=on//' /etc/nginx/sites-enabled/default
+
+# Test the new configuration
+nginx -t
+
+if [ $? -eq 0 ]; then
+    # Restart the Nginx service
+    systemctl restart nginx
+else
+    # Restore the original configuration file
+    cp /etc/nginx/sites-available/default.bak /etc/nginx/sites-available/default
+    echo "Error: the new configuration file is invalid, the original configuration file has been restored."
+fi
