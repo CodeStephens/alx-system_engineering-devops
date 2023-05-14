@@ -1,8 +1,25 @@
 #!/usr/bin/env bash
 # Debugging web server to listen on port 80
 
-sudo sed -i 's/listen 8080 default_server;/listen 80 default_server;/' /etc/nginx/sites-available/default
-sudo sed -i 's/listen \[::\]:8080 default_server;/listen \[::\]:80 default_server;/' /etc/nginx/sites-available/default
+sudo apt-get update
 
-# Restart the Nginx service
-sudo service nginx restart
+# Install Nginx
+sudo apt-get install nginx -y
+
+# Back up the default configuration file
+sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
+
+# Edit the configuration file to listen on port 80
+sudo sed -i 's/listen 80 default_server;/listen 80;/' /etc/nginx/sites-available/default
+
+# Check the syntax of the configuration file
+sudo nginx -t
+
+if [ $? -eq 0 ]; then
+  # Reload the Nginx configuration
+  sudo systemctl reload nginx
+else
+  # Restore the original configuration file
+  sudo cp /etc/nginx/sites-available/default.bak /etc/nginx/sites-available/default
+  echo "Error: the new configuration file is invalid, the original configuration file has been restored."
+fi
