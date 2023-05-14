@@ -2,13 +2,7 @@
 # Debugging web server to listen on port 80
 
 sudo sed -i 's/listen 8080 default_server;/listen 80 default_server;/' /etc/nginx/sites-available/default
-sudo sed -i 's/listen \[::\]:8080 default_server ipv6only=on;/listen \[::\]:80 default_server;/' /etc/nginx/sites-available/default
-sudo sed -i 's/ ipv6only=on//' /etc/nginx/sites-available/default
-
-# Test the new configuration
-nginx -t
+sudo sed -i 's/listen \[::\]:8080 default_server;/listen \[::\]:80 default_server;/' /etc/nginx/sites-available/default
 
 # Restart the Nginx service
-if [ $? -eq 0 ]; then
-	sudo service nginx restart
-fi
+sudo service nginx restart
