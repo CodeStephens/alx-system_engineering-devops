@@ -7,4 +7,4 @@ sudo sed -i 's/listen 8080 default_server;/listen 80 default_server;/' /etc/ngin
 
 sudo sed -i 's/listen \[::\]:8080 default_server ipv6only=on;/listen \[::\]:80 default_server;/' /etc/nginx/sites-enabled/default
 
-sudo systemctl restart nginx
+sudo service nginx restart
