@@ -4,13 +4,13 @@
 sudo apt update -y
 sudo apt install -y nginx
 CONFIG="server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
+        listen 80;
+        listen [::]:80;
 	add_header X-Served-By \$HOSTNAME;
 
         root /var/www/html;
 
-        index index.html index.htm index.nginx-debian.html;
+        index index.html;
 
         server_name _;
 
