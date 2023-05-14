@@ -17,7 +17,7 @@ sudo nginx -t
 
 if [ $? -eq 0 ]; then
   # Reload the Nginx configuration
-  sudo ln -s /etc/nginx/sites-available/default /etc/nginx/site-available/default
+  sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
   sudo service nginx restart
 else
   # Restore the original configuration file
