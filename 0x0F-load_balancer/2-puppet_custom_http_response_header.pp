@@ -8,13 +8,13 @@ file_line { 'add_custom_header':
   path   => '/etc/nginx/sites-available/default',
   line   => '        add_header X-Served-By $HOSTNAME;',
   match  => 'server {',
-  after  => true,
+  after  => "true",
   notify => Service['nginx'],
 }
 
 # Ensure nginx is running and enabled
 service { 'nginx':
   ensure  => running,
-  enable  => true,
+  enable  => "true",
   require => Package['nginx'],
 }
