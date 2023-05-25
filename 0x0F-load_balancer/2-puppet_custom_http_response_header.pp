@@ -1,4 +1,10 @@
 # Install nginx web server package
+exec { 'update':
+    provider => shell,
+    command  => 'sudo apt-get -y update',
+    before   => Package['nginx'],
+}
+
 package { 'nginx':
   ensure => installed,
 }
