@@ -6,7 +6,8 @@ exec { 'update':
 }
 
 package { 'nginx':
-  ensure => installed,
+  ensure  => installed,
+  require => Exec['update'],
 }
 
 # Add custom header to the configuration file
@@ -20,7 +21,8 @@ file_line { 'add_custom_header':
 
 # Ensure nginx is running and enabled
 service { 'nginx':
-  ensure  => running,
-  enable  => 'true',
-  require => Package['nginx'],
+  ensure    => running,
+  enable    => 'true',
+  require   => Package['nginx'],
+  subscribe => File_line['add_custom_header'],
 }
