@@ -28,3 +28,8 @@ service { 'nginx':
   content => "server {\n  listen 80 default_server;\n  listen [::]:80 default_server;\n  server_name _;\n\n  location /redirect_me {\n    return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n  }\n\n  location / {\n    try_files \$uri \$uri/ =404;\n  }\n\n  error_page 404 /404.html;\n  location = /404.html {\n    internal;\n    root /var/www/html;\n  }\n}\n",
   require => Package['nginx'],
 }
+-> file { '/var/www/html/index.html':
+    ensure  => present,
+    content => 'Hello World!',
+    require => Package['nginx'],
+}
