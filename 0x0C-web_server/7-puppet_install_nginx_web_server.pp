@@ -27,4 +27,5 @@ file { '/var/www/html/404.html':
 service { 'nginx':
   ensure => running,
   enable => true,
+  -> File['/var/www/html/404.html'],
 }
