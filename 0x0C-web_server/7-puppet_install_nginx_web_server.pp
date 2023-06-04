@@ -4,7 +4,6 @@ exec { 'apt-update':
   command => '/usr/bin/apt-get update',
   path    => '/usr/bin',
   unless  => '/usr/bin/apt-get update -qq >/dev/null',
-  before => Service['nginx'],
 }
 
 package { 'nginx':
@@ -27,4 +26,6 @@ file { '/var/www/html/404.html':
 service { 'nginx':
   ensure => running,
   enable => true,
+  -> File['/var/www/html/404.html'],
+  -> File['/etc/nginx/sites-available/default'],
 }
