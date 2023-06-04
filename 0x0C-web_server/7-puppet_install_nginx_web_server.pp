@@ -9,7 +9,7 @@ exec { 'apt-update':
 
 package { 'nginx':
   ensure => installed,
-  before => File['/etc/nginx/sites-available/default'],
+  before => File['/var/www/html/404.html'],
 }
 
 file { '/var/www/html/404.html':
