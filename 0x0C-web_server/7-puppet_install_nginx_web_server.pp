@@ -21,7 +21,7 @@ file { '/var/www/html/404.html':
 service { 'nginx':
   ensure => running,
   enable => true,
-  suscribe => File['/var/www/html/404.html'],
+  subscribe => File['/var/www/html/404.html'],
 } ->
 file { '/etc/nginx/sites-available/default':
   ensure  => present,
