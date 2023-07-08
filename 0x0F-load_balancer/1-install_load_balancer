@@ -13,8 +13,8 @@ frontend myfrontend
 
 backend myservers
         balance roundrobin
-        server 174890-web-01 52.87.219.225:80 check
-	server 174890-web-02 54.160.96.18:80 check
+        server 174890-web-01 54.87.156.183:80 check
+	    server 174890-web-02 54.89.195.4:80 check
 EOF
 )
 
