@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# script displays information about subdomains
+
+get_record_info() {
+    local domain="$1"
+    local subdomain="$2"
+
+    local result=$(dig +short "$subdomain.$domain" | awk '{ print $1 }')
+
+    if [[ -n "$result" ]]; then
+        local record_type=$(dig +short "$subdomain.$domain" | awk \
+            'NR==1{ print $4 }')
+        echo "The subdomain $subdomain is a $record_type record and \
+            points to $result"
+    else
+        echo "The subdomain $subdomain does not exist."
+    fi
+}
+
+main() {
+    local domain="$1"
+    local subdomain="$2"
+
+    if [[ -z "$subdomain" ]]; then
+        subdomain="www"
+        get_record_info "$domain" "$subdomain"
+
+        subdomain="lb-01"
+        get_record_info "$domain" "$subdomain"
+
+        subdomain="web-01"
+        get_record_info "$domain" "$subdomain"
+
+        subdomain="web-02"
+        get_record_info "$domain" "$subdomain"
+    else
+        get_record_info "$domain" "$subdomain"
+    fi
+}
+
+main "$@"
