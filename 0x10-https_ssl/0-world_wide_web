@@ -8,10 +8,8 @@ get_record_info() {
     local result=$(dig +short "$subdomain.$domain" | awk '{ print $1 }')
 
     if [[ -n "$result" ]]; then
-        local record_type=$(dig +short "$subdomain.$domain" | awk \
-            'NR==1{ print $4 }')
-        echo "The subdomain $subdomain is a $record_type record and \
-            points to $result"
+        local record_type=$(dig "$subdomain.$domain" | awk '/ANSWER SECTION:/ { getline; print $4 }')
+        echo "The subdomain $subdomain is a $record_type record and points to $result"
     else
         echo "The subdomain $subdomain does not exist."
     fi
