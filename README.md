@@ -1,1 +1,3 @@
-This is bash scripting repository
+# Introduction to Firewall
+
+Concept of filtering incoming and outgoing taffic
