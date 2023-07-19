@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# script executes the command 'whoami' under the user passed as an argument
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <username>"
+    exit 1
+fi
+
+username="$1"
+
+# Check if the user exists
+if ! id "$username" &>/dev/null; then
+    echo "Error: User '$username' does not exist."
+    exit 1
+fi
+
+# Switch user and run the whoami command
+su "$username" -c whoami
