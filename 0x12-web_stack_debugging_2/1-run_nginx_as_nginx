@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# this script runs nginx as 'nginx' system user with privileges only for running
+# services in the system and daemon
+
+if ! id nginx &>/dev/null; then
+    echo "Creating nginx user and group..."
+    groupadd -r nginxGroup
+    useradd -r -g nginx -s /usr/sbin/nologin -d /var/www/html nginx
+fi
+
+nginx_config="/etc/nginx/nginx.conf"
+nginx_listen_port=8080
+
+sudo sed -i "s/user\s\+[^;]\+/user nginx;/" "$nginx_config"
+sudo sed -i "s/listen\s\+[^;]\+/listen ${nginx_listen_port};/" "$nginx_config"
+
+sudo nginx -s reload
+
