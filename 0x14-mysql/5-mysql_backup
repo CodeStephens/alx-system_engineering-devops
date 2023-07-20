@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# This script creates an entire MySQL backup in a tar.gz archive
+
+# check the number of command line argument passed at execution is 1
+if [ $# -ne 1 ]; then
+  echo "Usage: $0 <mysql_root_password>"
+  exit 1
+fi
+
+# Retrieves the current date in the required format (day-month-year)
+current_date=$(date +%d-%m-%Y)
+
+# Defining  MySQL root user and password variables
+mysql_user="root"
+mysql_password="$1"
+
+# Directory to store the backup files
+backup_dir="~/mysql_backup"
+
+# Create the backup directory if it doesn't exist
+mkdir -p "$backup_dir"
+
+# MySQL dump command to generate the backup
+mysqldump -u "$mysql_user" -p "$mysql_password" --all-databases > \
+"$backup_dir/backup.sql"
+
+if [ $? -ne 0 ]; then
+  echo "Error: MySQL dump failed."
+  exit 1
+fi
+
+# Compress backup file into a tar.gz archive in the required format
+tar -czf "$backup_dir/$current_date.tar.gz" -C "$backup_dir" backup.sql
+
+if [ $? -ne 0 ]; then
+  echo "Error: backup.sql archive compression failed."
+  exit 1
+fi
+
+# Remove the original SQL dump after creating the archive
+rm "$backup_dir/backup.sql"
