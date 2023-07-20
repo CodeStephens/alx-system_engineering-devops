@@ -5,7 +5,7 @@
 if ! id nginx &>/dev/null; then
     echo "Creating nginx user and group..."
     groupadd -r nginxGroup
-    useradd -r -g nginx -s /usr/sbin/nologin -d /var/www/html nginx
+    useradd -r -g nginxGroup -s /usr/sbin/nologin -d /var/www/html nginx
 fi
 
 nginx_config="/etc/nginx/nginx.conf"
@@ -15,4 +15,3 @@ sudo sed -i "s/user\s\+[^;]\+/user nginx;/" "$nginx_config"
 sudo sed -i "s/listen\s\+[^;]\+/listen ${nginx_listen_port};/" "$nginx_config"
 
 sudo nginx -s reload
-

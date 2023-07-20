@@ -21,8 +21,7 @@ backup_dir="~/mysql_backup"
 mkdir -p "$backup_dir"
 
 # MySQL dump command to generate the backup
-mysqldump -u "$mysql_user" -p "$mysql_password" --all-databases > \
-"$backup_dir/backup.sql"
+mysqldump -u "$mysql_user" -p "$mysql_password" --all-databases > "$backup_dir/backup.sql"
 
 if [ $? -ne 0 ]; then
   echo "Error: MySQL dump failed."
