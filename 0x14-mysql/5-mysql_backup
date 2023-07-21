@@ -14,14 +14,8 @@ current_date=$(date +%d-%m-%Y)
 mysql_user="root"
 mysql_password="$1"
 
-# Directory to store the backup files
-backup_dir="~/mysql_backup"
-
-# Create the backup directory if it doesn't exist
-mkdir -p "$backup_dir"
-
 # MySQL dump command to generate the backup
-mysqldump -u "$mysql_user" -p "$mysql_password" --all-databases > "$backup_dir/backup.sql"
+mysqldump -u "$mysql_user" -p"$mysql_password" --all-databases > "./backup.sql"
 
 if [ $? -ne 0 ]; then
   echo "Error: MySQL dump failed."
@@ -29,7 +23,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Compress backup file into a tar.gz archive in the required format
-tar -czf "$backup_dir/$current_date.tar.gz" -C "$backup_dir" backup.sql
+tar -czf "./$current_date.tar.gz" -C "." backup.sql
 
 if [ $? -ne 0 ]; then
   echo "Error: backup.sql archive compression failed."
@@ -37,4 +31,4 @@ if [ $? -ne 0 ]; then
 fi
 
 # Remove the original SQL dump after creating the archive
-rm "$backup_dir/backup.sql"
+rm "./backup.sql"
