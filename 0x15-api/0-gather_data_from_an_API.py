@@ -1,12 +1,5 @@
 #!/usr/bin/python3
-"""Script
-pulls up data from a webpage using API.
-
-Raises
-------
-ValueError
-    If 'employee id' passed is not an integer.
-"""
+#Script pulls up data from a webpage using API.
 
 import requests
 from sys import argv
