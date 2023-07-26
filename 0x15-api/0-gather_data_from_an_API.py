@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-""" Script pulls up data from a webpage using API """
+"""Script
+pulls up data from a webpage using API.
+"""
 
 import requests
 from sys import argv
@@ -7,7 +9,7 @@ from sys import argv
 
 def get_employee_todo_progress(employee_id):
     """ This
-    method functionality aggregates tasks performed by a given employee
+    method functionality aggregates tasks performed by a given employee.
     """
 
     base_url = "https://jsonplaceholder.typicode.com"
