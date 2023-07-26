@@ -15,7 +15,7 @@ mysql_user="root"
 mysql_password="$1"
 
 # MySQL dump command to generate the backup
-sudo mysqldump -u "$mysql_user" -p"$mysql_password" --all-databases > "./backup.sql"
+mysqldump -u "$mysql_user" -p"$mysql_password" --all-databases > "./backup.sql"
 
 if [ $? -ne 0 ]; then
   echo "Error: MySQL dump failed."
@@ -23,7 +23,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Compress backup file into a tar.gz archive in the required format
-sudo tar -czf "./$current_date.tar.gz" -C "." backup.sql
+tar -czf "./$current_date.tar.gz" -C "." backup.sql
 
 if [ $? -ne 0 ]; then
   echo "Error: backup.sql archive compression failed."
