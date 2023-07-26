@@ -1,6 +1,11 @@
 #!/usr/bin/python3
 """Script
 pulls up data from a webpage using API.
+
+Raises
+------
+ValueError
+    If employee id passed is not an integer
 """
 
 import requests
@@ -10,6 +15,16 @@ from sys import argv
 def get_employee_todo_progress(employee_id):
     """ This
     method functionality aggregates tasks performed by a given employee.
+
+    Parameters
+    ----------
+    employee_id : int
+        unique integer value associated with distinct employee, it is nullable
+
+    Raises
+    ------
+    RequestException
+        If the API url is not valid.
     """
 
     base_url = "https://jsonplaceholder.typicode.com"
