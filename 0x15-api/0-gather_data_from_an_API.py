@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-""" script pulls up data from a webpage using API """
+""" 
+script pulls up data from a webpage using API
+"""
 import requests
 from sys import argv
 
