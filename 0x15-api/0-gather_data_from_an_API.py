@@ -11,6 +11,7 @@ def get_employee_todo_progress(employee_id):
     """
     this method functionality aggregates tasks performed by a given employee
     """
+
     base_url = "https://jsonplaceholder.typicode.com"
     user_url = f"{base_url}/users/{employee_id}"
     todos_url = f"{base_url}/todos?userId={employee_id}"
