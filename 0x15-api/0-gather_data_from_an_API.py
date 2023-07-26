@@ -5,7 +5,7 @@ pulls up data from a webpage using API.
 Raises
 ------
 ValueError
-    If employee id passed is not an integer
+    If 'employee id' passed is not an integer.
 """
 
 import requests
@@ -13,7 +13,7 @@ from sys import argv
 
 
 def get_employee_todo_progress(employee_id):
-    """ This
+    """This
     method functionality aggregates tasks performed by a given employee.
 
     Parameters
