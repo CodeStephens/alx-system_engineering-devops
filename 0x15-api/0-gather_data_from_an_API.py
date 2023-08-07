@@ -4,8 +4,18 @@ import requests
 from sys import argv
 
 
+if __name__ == "__main__":
+    if len(argv) == 2:
+        try:
+            employee_id = int(argv[1])
+            get_employee_todo_progress(employee_id)
+        except ValueError:
+            print("Error: Employee ID must be an integer.")
+
+
+
 def get_employee_todo_progress(employee_id):
-    #This functionality aggregates tasks performed by a given employee.
+    """This functionality aggregates tasks performed by a given employee."""
 
     base_url = "https://jsonplaceholder.typicode.com"
     user_url = f"{base_url}/users/{employee_id}"
@@ -34,12 +44,3 @@ def get_employee_todo_progress(employee_id):
                   and try again.")
     except requests.RequestException as e:
         print(f"Error: {e}")
-
-
-if __name__ == "__main__":
-    if len(argv) == 2:
-        try:
-            employee_id = int(argv[1])
-            get_employee_todo_progress(employee_id)
-        except ValueError:
-            print("Error: Employee ID must be an integer.")
