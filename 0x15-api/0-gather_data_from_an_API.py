@@ -6,18 +6,6 @@ from sys import argv
 
 def get_employee_todo_progress(employee_id):
     """This functionality aggregates tasks performed by a given employee."""
-
-   # Parameters
-   # ----------
-   # employee_id : int
-   #     unique integer value associated with distinct employee, it is nullable
-
-   # Raises
-   # ------
-   # RequestException
-   #     If the API url is not valid.
-   # """
-
     base_url = "https://jsonplaceholder.typicode.com"
     user_url = f"{base_url}/users/{employee_id}"
     todos_url = f"{base_url}/todos?userId={employee_id}"
